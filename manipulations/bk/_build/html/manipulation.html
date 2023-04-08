@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Text extraction from ontology data &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'manipulation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Fraud Detection" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fraud Detection
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Text extraction from ontology data</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmanipulation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/manipulation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Text extraction from ontology data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Text extraction from ontology data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-extracted-text-to-create-rules-for-fraud-detection">2. Using extracted text to create rules for fraud detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-rules">3. Test the rules</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#take-away">4. Take away</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="text-extraction-from-ontology-data">
+<h1>1. Text extraction from ontology data<a class="headerlink" href="#text-extraction-from-ontology-data" title="Permalink to this heading">#</a></h1>
+<p>Step 1:</p>
+<ul class="simple">
+<li><p>Load the ontology</p></li>
+<li><p>Understand its classes, properties and possible interconnections</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owlready2</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* Owlready2 * Warning: optimized Cython parser module &#39;owlready2_optimized&#39; is not available, defaulting to slower Python implementation
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lookAtTheOntology</span><span class="p">(</span><span class="n">onto_path</span><span class="p">):</span>
+    <span class="n">onto</span> <span class="o">=</span> <span class="n">get_ontology</span><span class="p">(</span><span class="n">onto_path</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;print(&#39;\tClasses: &#39;, *list(cls.name for cls in onto.classes()), sep=&#39;\n\t\t&#39;)</span>
+<span class="sd">    print(&#39;\n\tIndividuals: &#39;, *list(ind.name for ind in onto.individuals()), sep=&#39;\n\t\t&#39;)</span>
+<span class="sd">    print(&#39;\n\tProperties: &#39;, *list(prop.name for prop in onto.properties()), sep=&#39;\n\t\t&#39;)&#39;&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">onto</span>
+
+<span class="n">onto</span> <span class="o">=</span> <span class="n">lookAtTheOntology</span><span class="p">(</span><span class="s1">&#39;file://../new_FROD_ontology.owl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="nn">      4     &#39;&#39;&#39;print(&#39;\tClasses: &#39;, *list(cls.name for cls</span> in <span class="ni">onto.classes</span><span class="nt">()), sep=&#39;\n\t\t&#39;)</span>
+<span class="nn">      5     print(&#39;\n\tIndividuals: &#39;, *list(ind.name for ind</span> in <span class="ni">onto.individuals</span><span class="nt">()), sep=&#39;\n\t\t&#39;)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">Properties: &#39;</span><span class="p">,</span> <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">onto</span><span class="o">.</span><span class="n">properties</span><span class="p">()),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\t\t</span><span class="s1">&#39;</span><span class="p">)</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="s1">     return onto</span>
+<span class="ne">---&gt; </span><span class="mi">10</span><span class="s1"> onto = lookAtTheOntology(&#39;file://../new_FROD_ontology.owl&#39;)</span>
+
+<span class="nn">Cell In[2], line 2,</span> in <span class="ni">lookAtTheOntology</span><span class="nt">(onto_path)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="s1"> def lookAtTheOntology(onto_path):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span><span class="s1">     onto = get_ontology(onto_path).load()</span>
+<span class="nn">      4     &#39;&#39;&#39;print(&#39;\tClasses: &#39;, *list(cls.name for cls</span> in <span class="ni">onto.classes</span><span class="nt">()), sep=&#39;\n\t\t&#39;)</span>
+<span class="nn">      5     print(&#39;\n\tIndividuals: &#39;, *list(ind.name for ind</span> in <span class="ni">onto.individuals</span><span class="nt">()), sep=&#39;\n\t\t&#39;)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span><span class="s1">     print(&#39;</span><span class="se">\n\t</span><span class="s1">Properties: &#39;, *list(prop.name for prop in onto.properties()), sep=&#39;</span><span class="se">\n\t\t</span><span class="s1">&#39;)&#39;&#39;&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">return</span> <span class="n">onto</span>
+
+<span class="nn">File /usr/local/lib/python3.10/site-packages/owlready2/namespace.py:1090,</span> in <span class="ni">Ontology.load</span><span class="nt">(self, only_local, fileobj, reload, reload_if_newer, url, **args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1088</span> <span class="k">if</span> <span class="n">reload</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_last_update_time</span><span class="p">()</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1089</span>   <span class="k">if</span> <span class="n">_LOG_LEVEL</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;* Owlready2 *     ...loading ontology </span><span class="si">%s</span><span class="s2"> from </span><span class="si">%s</span><span class="s2">...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="n">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1090</span>   <span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1091</span>   <span class="c1">#try:     new_base_iri = self.graph.parse(fileobj, default_base = self._base_iri, **args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1092</span>   <span class="k">try</span><span class="p">:</span>     <span class="n">new_base_iri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="n">default_base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orig_base_iri</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../new_FROD_ontology.owl&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>We were told to use a dataset similar to the ontology</em></p>
+<p>Performing text extraction using both an ontology and a dataset involves first integrating the dataset into the ontology by mapping the dataset’s concepts to the ontology’s classes and properties.</p>
+<p>Step 2: (Map dataset to Ontology classes and properties)</p>
+<ul class="simple">
+<li><p>Create corresponding classes and properties for the dataset</p></li>
+<li><p>Create instances of the classes for the dataset</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">banking_path</span> <span class="o">=</span> <span class="s1">&#39;../data/Fraud_banking.csv&#39;</span>
+<span class="n">csv_banking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">banking_path</span><span class="p">)</span>
+<span class="n">csv_banking</span> <span class="o">=</span> <span class="n">csv_banking</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Convert binary values to categorical values</span>
+<span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;isFraud_Cat&quot;</span><span class="p">]</span>        <span class="o">=</span> <span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;isFraud&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Fraud&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Not Fraud&quot;</span><span class="p">})</span>
+<span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;isFlaggedFraud_Cat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;isFlaggedFraud&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Yes&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;No&quot;</span><span class="p">})</span>
+<span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;type_num&quot;</span><span class="p">]</span>           <span class="o">=</span> <span class="n">csv_banking</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;CASH_OUT&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;CASH_IN&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;PAYMENT&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;DEBIT&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;TRANSFER&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">})</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">csv_banking</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">csv_banking</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create corresponding classes and properties for the chosen subclass of the ontology </span>
+<span class="k">def</span> <span class="nf">addClassestoOntology</span><span class="p">(</span><span class="n">ontology</span><span class="p">,</span> <span class="n">ontology_class</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Get the list of columns in the dataframe</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="c1"># Check if the classes is in the ontology</span>
+    <span class="k">if</span> <span class="n">ontology_class</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ontology</span><span class="o">.</span><span class="n">classes</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ontology</span><span class="p">:</span>
+                <span class="k">class</span> <span class="nc">column</span><span class="p">(</span><span class="n">DataProperty</span><span class="p">):</span>
+                    <span class="n">domain</span>  <span class="o">=</span> <span class="p">[</span><span class="n">ontology_class</span><span class="p">]</span>
+                    <span class="nb">range</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">]</span>
+    <span class="c1"># Check if the classes and properties have been created</span>
+    <span class="c1"># --------------------------------------------------- Not sure how to do this yet </span>
+    
+    <span class="k">return</span> <span class="n">ontology</span><span class="p">;</span>
+
+<span class="n">onto</span> <span class="o">=</span> <span class="n">addClassestoOntology</span><span class="p">(</span><span class="n">onto</span><span class="p">,</span> <span class="s1">&#39;Transaction&#39;</span><span class="p">,</span> <span class="n">csv_banking</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an entry key, value pair for each attribute in every row of the dataset</span>
+<span class="k">def</span> <span class="nf">create_entry</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">csv_banking</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">columns</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span>
+            <span class="n">y</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    
+        <span class="n">entry</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> 
+    <span class="k">if</span> <span class="s1">&#39;zip&#39;</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">:</span>
+        <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;_zip&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">entry</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">]</span>
+    <span class="c1">#print(&#39;Entry: &#39;,entry, sep=&#39;\t&#39;)</span>
+    <span class="k">return</span> <span class="n">entry</span>
+
+<span class="c1"># Create instances of the classes for each row of the dataset</span>
+<span class="k">def</span> <span class="nf">createInstances</span><span class="p">(</span><span class="n">ontology</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">chosenClass</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">ontology</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">row_entry</span> <span class="o">=</span> <span class="n">create_entry</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+            <span class="n">transaction</span> <span class="o">=</span> <span class="n">ontology</span><span class="o">.</span><span class="n">chosenClass</span><span class="p">(</span><span class="n">chosenClass</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="o">**</span><span class="n">row_entry</span><span class="p">)</span>
+            <span class="c1"># print(&#39;Transaction: &#39;, transaction, &#39;Entry&#39;, row_entry, sep=&#39;\t&#39;)</span>
+    <span class="c1"># Check if the instances have been created</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">onto</span><span class="o">.</span><span class="n">Transaction</span><span class="o">.</span><span class="n">instances</span><span class="p">())),</span> <span class="s1">&#39; Instances created &#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ontology</span><span class="p">;</span>
+
+<span class="n">onto_n</span> <span class="o">=</span> <span class="n">createInstances</span><span class="p">(</span><span class="n">onto</span><span class="p">,</span> <span class="n">csv_banking</span><span class="p">,</span> <span class="s1">&#39;Transaction&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000	 Instances created 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-extracted-text-to-create-rules-for-fraud-detection">
+<h1>2. Using extracted text to create rules for fraud detection<a class="headerlink" href="#using-extracted-text-to-create-rules-for-fraud-detection" title="Permalink to this heading">#</a></h1>
+<p>Step :</p>
+<ul class="simple">
+<li><p>define extraction rules based on the client’s specifications</p></li>
+</ul>
+<p>I want to focus on the Transaction class</p>
+<p><em>The client has chosen the classes to evaluate so from here on our data is irrelevant</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">listOfScenarios</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Identity_Theft&#39;</span><span class="p">,</span><span class="s1">&#39;Credit_Card&#39;</span><span class="p">,</span><span class="s1">&#39;Investment&#39;</span><span class="p">,</span><span class="s1">&#39;Banking&#39;</span><span class="p">]</span> <span class="c1"># The list of classes are the different fraud scenarios</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">IdentityTheftRules</span><span class="p">(</span><span class="n">ontology</span><span class="p">):</span> <span class="c1"># Validate the identity Theft scenario with the rule statement ans send a notification to the user</span>
+    <span class="c1"># check what subclass of the ontology you are working with</span>
+    <span class="k">if</span> <span class="n">ontology</span><span class="o">.</span><span class="n">classes</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="n">ontology</span><span class="o">.</span><span class="n">Identity_Theft</span><span class="p">]:</span>
+        <span class="c1"># Create the rule statement</span>
+        <span class="n">rule_statement1</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.issued == &quot;France&quot; and x.ATM_Withdrawal_location_timezone == &quot;United States&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Identity Theft&quot;)&#39;</span>
+        <span class="n">rule_statement2</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.issued == &quot;France&quot; and x.ATM_Withdrawal_location_timezone == &quot;Europe&quot;:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="n">rule_statement3</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.subscription_payement in [&quot;RATP&quot;,&quot;SNCF&quot;,&quot;SFR&quot;,&quot;FREEMOBILE&quot;,&quot;LYCAMOBILE&quot;]:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Identity Theft&quot;)&#39;</span>
+        <span class="n">rule_statement4</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.insurance in [&quot;Orange&quot;,&quot;Bouygues&quot;,&quot;AXA&quot;]:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="n">rule_statement5</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.wrong_transaction_pin &gt; 3:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Identity Theft , Blocked Account&quot;)&#39;</span>
+        <span class="n">rule_statement6</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Identity_Theft.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Account_holder_name == &quot;Adamu Hussaini&quot; and x.share_purchase == &quot;Adamu Hussaini&quot;:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="c1"># Execute the rule statement</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement1</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement2</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement3</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement4</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement5</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement6</span><span class="p">)</span>
+    <span class="k">return</span> 
+
+<span class="k">def</span> <span class="nf">CreditCardRules</span><span class="p">(</span><span class="n">ontology</span><span class="p">):</span> <span class="c1"># Validate the credit card scenario with the rule statement ans send a notification to the user</span>
+    <span class="c1"># check what subclass of the ontology you are working with</span>
+    <span class="k">if</span> <span class="n">ontology</span><span class="o">.</span><span class="n">classes</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="n">ontology</span><span class="o">.</span><span class="n">Credit_Card</span><span class="p">]:</span>
+        <span class="c1"># Create the rule statements</span>
+        <span class="n">rule_statement1</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.IP_address == &quot;18970988&quot; and x.geolocation == &quot;Paris&quot;:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="n">rule_statement2</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.IP_address == &quot;18970988&quot; and x.geolocation != &quot;Paris&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Credit Card Fraud&quot;)&#39;</span>
+        <span class="n">rule_statement3</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Number_of_transactions &gt; 3:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Credit Card Fraud&quot;)&#39;</span>
+        <span class="n">rule_statement4</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.transaction_amount &gt; 1000:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Credit Card Fraud&quot;)&#39;</span>
+        <span class="n">rule_statement5</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Account_holder_name == &quot;Adamu Hussaini&quot; and x.share_purchase != &quot;Adamu Hussaini&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Identity Theft&quot;)&#39;</span>
+        <span class="n">rule_statement6</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.online_payment_platform_address == &quot;France&quot; and x.online_payment_platform_address == &quot;Euro zone&quot;:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="n">rule_statement7</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.online_payment_platform_address in [&quot;Nigeria&quot;,&quot;Asia&quot;,&quot;North America&quot;]:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Credit Card Fraud&quot;)&#39;</span>
+        <span class="n">rule_statement8</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Credit_Card.instances():</span><span class="se">\</span>
+<span class="s1">            if x.device_hash == &quot;Hidden&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Credit Card Fraud&quot;)&#39;</span>
+        <span class="c1"># Execute the rule statement</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement1</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement2</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement3</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement4</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement5</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement6</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement7</span><span class="p">)</span>
+        <span class="n">exec</span><span class="p">(</span><span class="n">rule_statement8</span><span class="p">)</span>
+    <span class="k">return</span>
+        
+<span class="k">def</span> <span class="nf">InvestmentRules</span><span class="p">(</span><span class="n">ontology</span><span class="p">):</span> <span class="c1"># Validate the investment scenario with the rule statement ans send a notification to the user</span>
+    <span class="c1"># check what subclass of the ontology you are working with</span>
+    <span class="k">if</span> <span class="n">ontology</span><span class="o">.</span><span class="n">classes</span><span class="p">()</span> <span class="o">==</span> <span class="p">[</span><span class="n">ontology</span><span class="o">.</span><span class="n">Investment</span><span class="p">]:</span>
+        <span class="c1"># Create the rule statements</span>
+        <span class="n">rule_statement1</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Investment.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Transaction == &quot;investment payment&quot; and x.payment_gateway == &quot;www.sharepurchase.com&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Investment Fraud&quot;)&#39;</span>
+        <span class="n">rule_statement2</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Investment.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Transaction == &quot;investment scheme&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Investment Fraud, Blocked&quot;)&#39;</span>
+        <span class="n">rule_statement3</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Investment.instances():</span><span class="se">\</span>
+<span class="s1">            if x.Transaction_amount &lt; 1000:</span><span class="se">\</span>
+<span class="s1">                pass&#39;</span>
+        <span class="n">rule_statement4</span> <span class="o">=</span> <span class="s1">&#39;for x in ontology.Investment.instances():</span><span class="se">\</span>
+<span class="s1">            if x.previous_transaction(&quot;Adamu Hussaini&quot;) == &quot;charge back&quot;:</span><span class="se">\</span>
+<span class="s1">                print(&quot;Investment Fraud&quot;)&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="test-the-rules">
+<h1>3. Test the rules<a class="headerlink" href="#test-the-rules" title="Permalink to this heading">#</a></h1>
+<p>Step 1:</p>
+<ul class="simple">
+<li><p>Validate against the ontology.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IdentityTheftRules</span><span class="p">(</span><span class="n">onto_n</span><span class="p">)</span>
+<span class="n">CreditCardRules</span><span class="p">(</span><span class="n">onto_n</span><span class="p">)</span>
+<span class="n">InvestmentRules</span><span class="p">(</span><span class="n">onto_n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Can’t validate without appropriate data</em></p>
+<p>With the code, hopefully we have verified the extraction rules for the individuals.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="take-away">
+<h1>4. Take away<a class="headerlink" href="#take-away" title="Permalink to this heading">#</a></h1>
+<p>Lessons learnt from working on the project:</p>
+<ul class="simple">
+<li><p>Working with ontology data is crazy fun … emphasis on <strong>crazy</strong>.</p></li>
+<li><p>When we break things down, the tasks become a whole less complicated and daunting.</p></li>
+<li><p>It is important to write code in a modular format</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fraud Detection</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Text extraction from ontology data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-extracted-text-to-create-rules-for-fraud-detection">2. Using extracted text to create rules for fraud detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-rules">3. Test the rules</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#take-away">4. Take away</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

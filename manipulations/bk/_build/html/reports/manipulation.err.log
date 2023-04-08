@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/local/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/local/Cellar/python@3.10/3.10.10_1/Frameworks/Python.framework/Versions/3.10/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def lookAtTheOntology(onto_path):
+    onto = get_ontology(onto_path).load()
+    
+    '''print('\tClasses: ', *list(cls.name for cls in onto.classes()), sep='\n\t\t')
+    print('\n\tIndividuals: ', *list(ind.name for ind in onto.individuals()), sep='\n\t\t')
+    print('\n\tProperties: ', *list(prop.name for prop in onto.properties()), sep='\n\t\t')'''
+
+    return onto
+
+onto = lookAtTheOntology('file://../new_FROD_ontology.owl')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[2], line 10[0m
+[1;32m      4[0m [38;5;250m    [39m[38;5;124;03m'''print('\tClasses: ', *list(cls.name for cls in onto.classes()), sep='\n\t\t')[39;00m
+[1;32m      5[0m [38;5;124;03m    print('\n\tIndividuals: ', *list(ind.name for ind in onto.individuals()), sep='\n\t\t')[39;00m
+[1;32m      6[0m [38;5;124;03m    print('\n\tProperties: ', *list(prop.name for prop in onto.properties()), sep='\n\t\t')'''[39;00m
+[1;32m      8[0m     [38;5;28;01mreturn[39;00m onto
+[0;32m---> 10[0m onto [38;5;241m=[39m [43mlookAtTheOntology[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mfile://../new_FROD_ontology.owl[39;49m[38;5;124;43m'[39;49m[43m)[49m
+
+Cell [0;32mIn[2], line 2[0m, in [0;36mlookAtTheOntology[0;34m(onto_path)[0m
+[1;32m      1[0m [38;5;28;01mdef[39;00m [38;5;21mlookAtTheOntology[39m(onto_path):
+[0;32m----> 2[0m     onto [38;5;241m=[39m [43mget_ontology[49m[43m([49m[43monto_path[49m[43m)[49m[38;5;241;43m.[39;49m[43mload[49m[43m([49m[43m)[49m
+[1;32m      4[0m [38;5;250m    [39m[38;5;124;03m'''print('\tClasses: ', *list(cls.name for cls in onto.classes()), sep='\n\t\t')[39;00m
+[1;32m      5[0m [38;5;124;03m    print('\n\tIndividuals: ', *list(ind.name for ind in onto.individuals()), sep='\n\t\t')[39;00m
+[1;32m      6[0m [38;5;124;03m    print('\n\tProperties: ', *list(prop.name for prop in onto.properties()), sep='\n\t\t')'''[39;00m
+[1;32m      8[0m     [38;5;28;01mreturn[39;00m onto
+
+File [0;32m/usr/local/lib/python3.10/site-packages/owlready2/namespace.py:1090[0m, in [0;36mOntology.load[0;34m(self, only_local, fileobj, reload, reload_if_newer, url, **args)[0m
+[1;32m   1088[0m [38;5;28;01mif[39;00m reload [38;5;129;01mor[39;00m ([38;5;28mself[39m[38;5;241m.[39mgraph[38;5;241m.[39mget_last_update_time() [38;5;241m==[39m [38;5;241m0.0[39m):
+[1;32m   1089[0m   [38;5;28;01mif[39;00m _LOG_LEVEL: [38;5;28mprint[39m([38;5;124m"[39m[38;5;124m* Owlready2 *     ...loading ontology [39m[38;5;132;01m%s[39;00m[38;5;124m from [39m[38;5;132;01m%s[39;00m[38;5;124m...[39m[38;5;124m"[39m [38;5;241m%[39m ([38;5;28mself[39m[38;5;241m.[39mname, f), file [38;5;241m=[39m sys[38;5;241m.[39mstderr)
+[0;32m-> 1090[0m   fileobj [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mrb[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m   1091[0m   [38;5;66;03m#try:     new_base_iri = self.graph.parse(fileobj, default_base = self._base_iri, **args)[39;00m
+[1;32m   1092[0m   [38;5;28;01mtry[39;00m:     new_base_iri [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mgraph[38;5;241m.[39mparse(fileobj, default_base [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_orig_base_iri, [38;5;241m*[39m[38;5;241m*[39margs)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../new_FROD_ontology.owl'
+FileNotFoundError: [Errno 2] No such file or directory: '../new_FROD_ontology.owl'
+
