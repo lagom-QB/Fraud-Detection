@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Text extraction from ontology data &#8212; My sample book</title>
+    <title>Fraud Detection Project Progresion notebook &#8212; My sample book</title>
   
   
   
@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'manipulation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="markdown.html" />
     <link rel="prev" title="Fraud Detection" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -156,7 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Text extraction from ontology data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fraud Detection Project Progresion notebook</a></li>
+
 
 
 
@@ -343,7 +345,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. Text extraction from ontology data</h1>
+    <h1>Fraud Detection Project Progresion notebook</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -353,7 +355,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Text extraction from ontology data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fraud Detection Project Progresion notebook</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-extraction-from-ontology-data">1. Text extraction from ontology data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-extracted-text-to-create-rules-for-fraud-detection">2. Using extracted text to create rules for fraud detection</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-rules">3. Test the rules</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#take-away">4. Take away</a></li>
@@ -369,7 +372,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="text-extraction-from-ontology-data">
+  <section class="tex2jax_ignore mathjax_ignore" id="fraud-detection-project-progresion-notebook">
+<h1>Fraud Detection Project Progresion notebook<a class="headerlink" href="#fraud-detection-project-progresion-notebook" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="text-extraction-from-ontology-data">
 <h1>1. Text extraction from ontology data<a class="headerlink" href="#text-extraction-from-ontology-data" title="Permalink to this heading">#</a></h1>
 <p>Step 1:</p>
 <ul class="simple">
@@ -462,6 +468,133 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>step</th>
+      <th>type</th>
+      <th>amount</th>
+      <th>nameOrig</th>
+      <th>oldbalanceOrg</th>
+      <th>newbalanceOrig</th>
+      <th>nameDest</th>
+      <th>oldbalanceDest</th>
+      <th>newbalanceDest</th>
+      <th>isFraud</th>
+      <th>isFlaggedFraud</th>
+      <th>isFraud_Cat</th>
+      <th>isFlaggedFraud_Cat</th>
+      <th>type_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>349</td>
+      <td>CASH_OUT</td>
+      <td>28344.16</td>
+      <td>C268519076</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>C508553339</td>
+      <td>687721.51</td>
+      <td>716065.68</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Not Fraud</td>
+      <td>No</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>CASH_IN</td>
+      <td>245410.40</td>
+      <td>C895931208</td>
+      <td>7518937.49</td>
+      <td>7764347.89</td>
+      <td>C1426908073</td>
+      <td>1493780.18</td>
+      <td>1248369.78</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Not Fraud</td>
+      <td>No</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>378</td>
+      <td>TRANSFER</td>
+      <td>63943.25</td>
+      <td>C1478662134</td>
+      <td>84297.91</td>
+      <td>20354.66</td>
+      <td>C1156744086</td>
+      <td>72160.64</td>
+      <td>136103.89</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Not Fraud</td>
+      <td>No</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>249</td>
+      <td>CASH_IN</td>
+      <td>177897.95</td>
+      <td>C726956812</td>
+      <td>3827651.56</td>
+      <td>4005549.51</td>
+      <td>C796807095</td>
+      <td>1282371.61</td>
+      <td>1104473.67</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Not Fraud</td>
+      <td>No</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>139</td>
+      <td>CASH_OUT</td>
+      <td>122028.27</td>
+      <td>C2019629537</td>
+      <td>503220.00</td>
+      <td>381191.73</td>
+      <td>C1708995543</td>
+      <td>0.00</td>
+      <td>122028.27</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Not Fraud</td>
+      <td>No</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000, 14)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -520,7 +653,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000	 Instances created 
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">28</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">onto</span><span class="o">.</span><span class="n">Transaction</span><span class="o">.</span><span class="n">instances</span><span class="p">())),</span> <span class="s1">&#39; Instances created &#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">return</span> <span class="n">ontology</span><span class="p">;</span>
+<span class="ne">---&gt; </span><span class="mi">28</span> <span class="n">onto_n</span> <span class="o">=</span> <span class="n">createInstances</span><span class="p">(</span><span class="n">onto</span><span class="p">,</span> <span class="n">csv_banking</span><span class="p">,</span> <span class="s1">&#39;Transaction&#39;</span><span class="p">)</span>
+
+<span class="nn">Cell In[9], line 22,</span> in <span class="ni">createInstances</span><span class="nt">(ontology, dataset, chosenClass)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>         <span class="n">row_entry</span> <span class="o">=</span> <span class="n">create_entry</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>         <span class="n">transaction</span> <span class="o">=</span> <span class="n">ontology</span><span class="o">.</span><span class="n">chosenClass</span><span class="p">(</span><span class="n">chosenClass</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span> <span class="o">**</span><span class="n">row_entry</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>         <span class="c1"># print(&#39;Transaction: &#39;, transaction, &#39;Entry&#39;, row_entry, sep=&#39;\t&#39;)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="c1"># Check if the instances have been created</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">onto</span><span class="o">.</span><span class="n">Transaction</span><span class="o">.</span><span class="n">instances</span><span class="p">())),</span> <span class="s1">&#39; Instances created &#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: &#39;NoneType&#39; object is not callable
 </pre></div>
 </div>
 </div>
@@ -702,6 +850,15 @@ document.write(`
         <p class="prev-next-title">Fraud Detection</p>
       </div>
     </a>
+    <a class="right-next"
+       href="markdown.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -720,7 +877,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Text extraction from ontology data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fraud Detection Project Progresion notebook</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#text-extraction-from-ontology-data">1. Text extraction from ontology data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-extracted-text-to-create-rules-for-fraud-detection">2. Using extracted text to create rules for fraud detection</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-the-rules">3. Test the rules</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#take-away">4. Take away</a></li>
